@@ -41,12 +41,12 @@ const load = ({ appId, gatekeeper, redirect, scope }) => new Promise((resolve, r
 
     const _redirect = parseAsURL(redirect)
     const searchParams = 'rslCallback=github'
-    let githubScopes = [ 'user' ]
+    let githubScopes = [ 'read:user' ]
 
     if (Array.isArray(scope)) {
-      githubScopes = githubScopes.concat(scope)
+      githubScopes = scope
     } else if (typeof scope === 'string' && scope) {
-      githubScopes = githubScopes.concat(scope.split(','))
+      githubScopes = scope.split(',')
     }
 
     githubScopes = githubScopes.reduce((acc, item) => {
